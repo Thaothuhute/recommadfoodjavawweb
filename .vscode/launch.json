@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FoodrecommandApplication<foodrecommand>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.foodrecommand.FoodrecommandApplication",
+            "projectName": "foodrecommand",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

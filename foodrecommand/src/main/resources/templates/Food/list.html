@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.Thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Book List</title>
+    <th:block th:replace="index :: link-css"></th:block>
+</head>
+<body>
+    <th:block th:replace="index :: header"></th:block>
+    <div class="container">
+        <h1 th:text="${title}"></h1>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>name</th>
+                <th>calo</th>
+                <th>chatxo</th>
+                <th>chatdam</th>
+                <th>chatbeo</th>
+                <th>DVT</th>
+                <th>Loai mon</th>
+                <th>Buoi an</th>
+            </tr>
+            <tr th:each="food : ${foods}">
+                <td th:text="${food.Idfood}"></td>
+                <td th:text="${food.name}"></td>
+                <td th:text="${food.calo}"></td>
+                <td th:text="${food.chatxo}"></td>
+                <td th:text="${food.chatdam}"></td>
+                <td th:text="${food.chatbeo}"></td>
+                <td th:text="${food.unit.Nameunit}"></td>
+                <td th:text="${food.typefood.Name}"></td>
+                <td th:text="${food.meal.Namemeal}"></td>
+
+              
+            </tr>
+        </table>
+    </div>
+    <th:block th:replace="index :: footer"></th:block> 
+</body>
+</html>
