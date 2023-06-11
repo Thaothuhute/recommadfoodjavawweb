@@ -14,6 +14,6 @@ public class AdminController {
 
     @GetMapping("/units")
     public String unitcontroller(){
-        return "Admin/tables";        
+        return "Unit/tables";        
     }
 }
