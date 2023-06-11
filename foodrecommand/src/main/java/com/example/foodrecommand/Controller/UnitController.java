@@ -65,10 +65,14 @@ public class UnitController {
 
     @PostMapping("/edit/{id}")
     public String editUnit(@PathVariable("id") Long id, @ModelAttribute("unit") Unit unit,BindingResult bindingResult,Model model) {
-       Unit un = unitService.getUnitbyId(id);
-        un.setDescribeunit(unit.getDescribeunit());
-        un.setNameunit(unit.getNameunit());
-        unitService.Addunit(un);
+        unitService.Addunit(unit);
+        return "redirect:/units";
+    }
+
+     
+    @GetMapping("/delete/{id}")
+    public String deleteBook(@PathVariable("id") Long id) {
+        unitService.deleteById(id);
         return "redirect:/units";
     }
 }

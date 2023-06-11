@@ -118,6 +118,7 @@
                                 <div class="container">
                                     <h1 th:text="${title}"></h1>
                                     <form th:action="@{/units/edit/{id}(id=${unit.idUnit})}" th:object="${unit}" method="post">
+                                        <input type="hidden" th:field="*{idUnit}"th:value="*{idUnit}" />
                                         <div class="col-6 mb-3">
                                             <label class="form-control" for="nameunit">nameunit:</label>
                                             <input class="form-control" type="text" th:field="*{nameunit}" id="nameunit">

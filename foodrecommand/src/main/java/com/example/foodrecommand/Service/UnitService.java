@@ -29,4 +29,8 @@ public class UnitService {
         iUnitRepository.delete(unit);
     }
 
+    public void deleteById(Long id){
+        iUnitRepository.deleteById(id);
+    }
+
 }
