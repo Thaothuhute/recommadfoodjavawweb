@@ -13,7 +13,7 @@ public class UnitService {
     @Autowired
     private IUnitRepository iUnitRepository;
 
-    public List<Unit> getllUnit(){
+    public List<Unit> getAllUnit(){
         return iUnitRepository.findAll();
     }
     public Unit getUnitbyId(Long id ){
