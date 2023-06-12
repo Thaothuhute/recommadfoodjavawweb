@@ -43,7 +43,7 @@ public class Food {
     @Column(name ="chatxo")
 
     private int chatxo;
-    @Column(name ="chatbeo")
+    @Column(name ="chatbeo")            
 
     private int chatbeo;
     @Column(name ="qlove")

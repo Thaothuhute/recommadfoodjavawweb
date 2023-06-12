@@ -58,14 +58,14 @@
                           
                             <div class="card-body">
                                 <div>
-                                   <a th:href="@{units/add}">Them don vi tinh</a>   
+                                   <a th:href="@{typefoods/add}">Them loai mon</a>   
                                 </div>
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
                                             <th>Ten</th>
-                                            <th>Mo ta</th>
+                                            
                                             <th>Tong mon an</th>
                                             <th>Chinh sua</th>
                                             
@@ -75,21 +75,20 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Ten</th>
-                                            <th>Mo ta</th>
+                                            
                                             <th>Tong mon an</th>
                                             <th>Chinh sua</th>
 
                                         </tr>
                                     </tfoot>
                                    <tbody>
-                                    <tr th:each="Unit : ${units}">
-                                        <td th:text="${Unit.idUnit}"></td>
-                                        <td th:text="${Unit.nameunit}"></td>
-                                        <td th:text="${Unit.describeunit}"></td>
+                                    <tr th:each="type : ${typefoods}">
+                                        <td th:text="${type.idTypefood}"></td>
+                                        <td th:text="${type.Name}"></td>
                                         <td>asd</td>
                                         <td>
-                                            <a th:href="@{/units/edit/{id}(id=${Unit.idUnit})}">Chinh sửa đơn vị tính</a>|
-                                            <a th:href="@{/units/delete/{id}(id=${Unit.idUnit})}" onclick="return confirm('Are you sure?')">Delete</a>
+                                            <a th:href="@{/typefoods/edit/{id}(id=${type.idTypefood})}">Chinh sửa đơn vị tính</a>|
+                                            <a th:href="@{/typefoods/delete/{id}(id=${type.Name})}" onclick="return confirm('Are you sure?')">Delete</a>
                                         </td>
                                     </tr>
                                    </tbody>

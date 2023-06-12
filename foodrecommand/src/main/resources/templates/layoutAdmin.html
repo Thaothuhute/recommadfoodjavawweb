@@ -43,6 +43,7 @@
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
                     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                        <th:block th:fragment="navbarItem">
                         <div class="sb-sidenav-menu">
                             <div class="nav">
                                 <div class="sb-sidenav-menu-heading">Core</div>
@@ -91,8 +92,10 @@
                                                 <a class="nav-link" href="500.html">500 Page</a>
                                             </nav>
                                         </div>
+                                        
                                     </nav>
                                 </div>
+
                                 <div class="sb-sidenav-menu-heading">Addons</div>
                                 <a class="nav-link" href="charts.html">
                                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -102,8 +105,23 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                     Tables
                                 </a>
+                                <a class="nav-link" href="/units">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Don vi tinh
+                                </a>
+                                <a class="nav-link" href="/typefoods">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Loai mon
+                                </a>
+                                <a class="nav-link" href="/foods">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Mon an
+                                </a>
+                                
+
                             </div>
                         </div>
+                        </th:block>
                         <div class="sb-sidenav-footer">
                             <div class="small">Logged in as:</div>
                             Start Bootstrap

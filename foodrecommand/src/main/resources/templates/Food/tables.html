@@ -58,38 +58,51 @@
                           
                             <div class="card-body">
                                 <div>
-                                   <a th:href="@{units/add}">Them don vi tinh</a>   
+                                   <a th:href="@{foods/add}">Them  mon an</a>   
                                 </div>
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Ten</th>
-                                            <th>Mo ta</th>
-                                            <th>Tong mon an</th>
+                                            <th>ID</th>
+                                            <th>name</th>
+                                            <th>calo</th>
+                                            <th>chatxo</th>
+                                            <th>chatdam</th>
+                                            <th>chatbeo</th>
+                                            <th>DVT</th>
+                                            <th>Loai mon</th>
+                                            <th>Buoi an</th>
                                             <th>Chinh sua</th>
-                                            
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Ten</th>
-                                            <th>Mo ta</th>
-                                            <th>Tong mon an</th>
+                                            <th>ID</th>
+                                            <th>name</th>
+                                            <th>calo</th>
+                                            <th>chatxo</th>
+                                            <th>chatdam</th>
+                                            <th>chatbeo</th>
+                                            <th>DVT</th>
+                                            <th>Loai mon</th>
+                                            <th>Buoi an</th>
                                             <th>Chinh sua</th>
-
                                         </tr>
                                     </tfoot>
                                    <tbody>
-                                    <tr th:each="Unit : ${units}">
-                                        <td th:text="${Unit.idUnit}"></td>
-                                        <td th:text="${Unit.nameunit}"></td>
-                                        <td th:text="${Unit.describeunit}"></td>
-                                        <td>asd</td>
+                                    <tr th:each="food : ${foods}">
+                                        <td th:text="${food.Idfood}"></td>
+                                        <td th:text="${food.name}"></td>
+                                        <td th:text="${food.calo}"></td>
+                                        <td th:text="${food.chatxo}"></td>
+                                        <td th:text="${food.chatdam}"></td>
+                                        <td th:text="${food.chatbeo}"></td>
+                                        <td th:text="${food.unit.Nameunit}"></td>
+                                        <td th:text="${food.typefood.Name}"></td>
+                                        <td th:text="${food.meal.Namemeal}"></td>
                                         <td>
-                                            <a th:href="@{/units/edit/{id}(id=${Unit.idUnit})}">Chinh sửa đơn vị tính</a>|
-                                            <a th:href="@{/units/delete/{id}(id=${Unit.idUnit})}" onclick="return confirm('Are you sure?')">Delete</a>
+                                            <a th:href="@{/foods/edit/{id}(id=${food.Idfood})}">Chinh sửa loai bua mon</a>|
+                                            <a th:href="@{/foods/delete/{id}(id=${food.Idfood})}" onclick="return confirm('Are you sure?')">Delete</a>
                                         </td>
                                     </tr>
                                    </tbody>

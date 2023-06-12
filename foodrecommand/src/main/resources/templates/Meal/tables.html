@@ -58,7 +58,7 @@
                           
                             <div class="card-body">
                                 <div>
-                                   <a th:href="@{units/add}">Them don vi tinh</a>   
+                                   <a th:href="@{meals/add}">Them loai bua cho mon an</a>   
                                 </div>
                                 <table id="datatablesSimple">
                                     <thead>
@@ -76,20 +76,22 @@
                                             <th>Id</th>
                                             <th>Ten</th>
                                             <th>Mo ta</th>
+
                                             <th>Tong mon an</th>
                                             <th>Chinh sua</th>
 
                                         </tr>
                                     </tfoot>
                                    <tbody>
-                                    <tr th:each="Unit : ${units}">
-                                        <td th:text="${Unit.idUnit}"></td>
-                                        <td th:text="${Unit.nameunit}"></td>
-                                        <td th:text="${Unit.describeunit}"></td>
+                                    <tr th:each="meal : ${meals}">
+                                        <td th:text="${meal.idMeal}"></td>
+                                        <td th:text="${meal.Namemeal}"></td>
+                                        <td th:text="${meal.Describemeal}"></td>
+
                                         <td>asd</td>
                                         <td>
-                                            <a th:href="@{/units/edit/{id}(id=${Unit.idUnit})}">Chinh sửa đơn vị tính</a>|
-                                            <a th:href="@{/units/delete/{id}(id=${Unit.idUnit})}" onclick="return confirm('Are you sure?')">Delete</a>
+                                            <a th:href="@{/meals/edit/{id}(id=${meal.idMeal})}">Chinh sửa loai bua mon</a>|
+                                            <a th:href="@{/meals/delete/{id}(id=${meal.idMeal})}" onclick="return confirm('Are you sure?')">Delete</a>
                                         </td>
                                     </tr>
                                    </tbody>
