@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:replace="layout :: layout-css"></th:block>
+    <link rel="stylesheet" href="/css/cssprofile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+</head>
+<body>
+    <main>
+        <form th:action="@{/user/edit/{id}(id=${user.userid})}" th:object="${user}" method="post">
+            <input type="hidden" th:field="*{userid}"th:value="*{userid}" />
+            <input type="hidden" th:field="*{username}"th:value="*{username}" />
+            <input type="hidden" th:field="*{password}"th:value="*{password}" />
+            <input type="hidden" th:field="*{email}"th:value="*{email}" />
+
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold" th:text="${user.username}"></span><span class="text-black-50" th:text = "${user.email}"></span><span> </span></div>
+                </div>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label class="labels" for="weigh">Can nang</label>
+                                <input type="text" class="form-control" id="weigh" th:field="*{weigh}" value="weigh">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels" for="height">Chieu cao </label>
+                                <input type="text" class="form-control" id="height" th:field ="*{height}" value="height">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="labels" for="age">Tuoi</label>
+                                <input type="text" class="form-control" id="age" th:field ="*{age}" value="age">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels" for="gender">Gioi tinh</label>
+                                <select type="text" class="form-control" id="gender" th:field ="*{gender}" value="gender">
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nu</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels" for="active">Cuong do hoat dong</label>
+                                <input type="text" class="form-control" id="active" th:field ="*{active}" value="active">
+                            </div>
+                            </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label class="labels">Chir</label>
+                                <input type="text" class="form-control" placeholder="country" value="">
+                            </div>
+                            <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <button class="btn btn-primary profile-button"  type="submit">Save Profile</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label class="labels" for="weigh">Chi so IBM</label>
+                                <label type="text" class="form-control"></label> 
+                                </div>
+                            <div class="col-md-6">
+                                <label class="labels" for="height">Tinh trang </label>
+                                <label type="text" class="form-control"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12"><label class="labels">Calo nen an trong mot ngay</label>
+                            <label type="text" class="form-control"></label>
+                        </div> 
+                        <br>
+                        <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form> 
+        
+
+    </main>
+    <th:block th:replace="layout :: layout-footer"></th:block>
+</body>

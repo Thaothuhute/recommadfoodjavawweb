@@ -64,18 +64,13 @@
                                   <input class="form-control" type="text" th:field="*{Namemeal}" id="Namemeal"/>
                                   <span class="text-danger" th:if="${#fields.hasErrors('Namemeal')}" th:errors="*{Namemeal}"></span>
                                 </div>
+                                
                                 <div class="col-6 mb-3">
                                   <label class="form-label" for="Describemeal">Mo ta</label>
-                                  <input class="form-control" type="text" th:field="*{NamDescribemeale}" id="Describemeal"/>
+                                  <input class="form-control" type="text" th:field="*{Describemeal}" id="Describemeal"/>
                                   <span class="text-danger" th:if="${#fields.hasErrors('Describemeal')}" th:errors="*{Describemeal}"></span>
                                 </div>
-                        
-                               
-                               
-                        
-                        
-                            
-                                <input type="submit" class="btn btn-primary" value="Save" />
+                                <input type="submit" class="btn btn-primary" value="Same" />
                               </form>
                             </div>
                         </div>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.Thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+lang="en">
 
 <head>
   <th:block th:fragment="layout-css">
@@ -53,12 +55,21 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/foods">Menu</a></li>
+        <li><a href="/menu">Menu</a></li>
         <li><a href="/event">Events</a></li>
         <li><a href="/chefs">Chefs</a></li>
         <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/user">User</a></li>
+        <li sec:authorize="isAuthenticated()">
+          <form th:action="@{/logout}" method="post">
+            <a class="btn btn-outline-danger" type="submit">Logout</a>
+          </form>
+        </li>
+        <li sec:authorize="!isAuthenticated()">
+          <a class="btn btn-outline-primary" href="/login">Login</a>
+        </li>
         <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>

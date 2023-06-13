@@ -22,27 +22,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "datatrain")
-public class Datatrain {
+@Table(name = "detailnutrifood")
+public class DetailNutriFood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private long id;
-    @Column(name ="age")
-    private int age;
-    @Column(name ="active")
-    private int active;
-    @Column(name ="gender")
-    private int gender;
-    @Column(name ="color")
-    private int color;
-    @Column(name ="keyemotion")
-    private int keyemotion;
-    @Column(name="keytaste")
-    private int keytaste;
+    private Long iddetailnutri;
+
+    @ManyToOne
+    @JoinColumn(name  = "idfood", referencedColumnName = "idFood")
+    @ValidTypefoodId
+    private Food food;
+
     @ManyToOne
     @JoinColumn(name  = "idnutribute", referencedColumnName = "idNutribute")
     @ValidTypefoodId
     private Nutribute nutribute;
 
+
+    @Column(name ="level")
+    private int levelnutri;
 }

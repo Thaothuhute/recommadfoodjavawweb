@@ -60,61 +60,72 @@
                               <div class="container">
                                 <h1> Them mon an</h1>
                                 <form th:action="@{/foods/edit/{id}(id=${food.Idfood})}" th:object="${food}" method="post">
+                                
                                     <input type="hidden" th:field="*{Idfood}"th:value="*{Idfood}" />
-
-                                    <div class="col-6 mb-3">
-                                    <label class="form-label" for="name">Ten mon:</label>
-                                    <input class="form-control" type="text" th:field="*{name}" id="name"/>
-                                    <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-                                  </div>
-                                  <div class="col-6 mb-3">
-                                    <label class="form-label" for="calo">Calo:</label>
-                                    <input class="form-control" type="text" th:field="*{calo}" id="calo" />
-                                    <span class="text-danger" th:if="${#fields.hasErrors('calo')}" th:errors="*{calo}"></span>
-                                  </div>
-                                  <div class="col-6 mb-3">
-                                    <label class="form-label" for="chatdam">Chat dam:</label>
-                                    <input class="form-control" type="text" th:field="*{chatdam}" id="chatdam"/>
-                                    <span class="text-danger" th:if="${#fields.hasErrors('chatdam')}" th:errors="*{chatdam}"></span>
-                                  </div>
-                                  <div class="col-6 mb-3">
-                                    <label class="form-label" for="chatbeo">Chat beo:</label>
-                                    <input class="form-control" type="text" th:field="*{chatbeo}" id="chatbeo"/>
-                                    <span class="text-danger" th:if="${#fields.hasErrors('chatbeo')}" th:errors="*{chatbeo}"></span>
-                                  </div>
-                                  <div class="col-6 mb-3">
-                                    <label class="form-label" for="chatxo">Chat xo:</label>
-                                    <input class="form-control" type="text" th:field="*{chatxo}" id="chatxo"/>
-                                    <span class="text-danger" th:if="${#fields.hasErrors('chatxo')}" th:errors="*{chatxo}"></span>
-                                  </div>
-                                  <div class="col-6 mb-3">
-                                    <label class="form-label" for="qlove">So tim:</label>
-                                    <input class="form-control" type="text" th:field="*{chatxo}" id="chatxo"  readonly/>
-                                    <span class="text-danger" th:if="${#fields.hasErrors('chatxo')}" th:errors="*{chatxo}"></span>
-                                  </div>
-                                  <div class="col-6 mb-3">
-                                    <label class="form-label" for="unit">Don vi tinh:</label>
-                                    <select class="form-control" id="unit" name="unit.idUnit">
-                                        <option th:value="${food.unit.idUnit}" th:text="${food.unit.Nameunit}"></option>
-                                        <option th:each="unit : ${unitfood}" th:value="${unit.idUnit}" th:text="${unit.Nameunit}" ></option>
-
-                                    </select>
-
-                                  </div>
-                                  <div class="col-6 mb-3">
-                                    <label class="form-label" for="typefood">Don vi tinh:</label>
-                                    <select class="form-control" id="typefood" name="typefood.idTypefood">
-                                        <option th:value="${food.typefood.idTypefood}" th:text="${food.typefood.Name}"></option>
-                                      <option th:each="type : ${typefood}" th:value="${type.idTypefood}" th:text="${type.Name}" ></option>
-                                    </select>
-                                  </div>
-                                  <div class="col-6 mb-3">
-                                    <label class="form-label" for="meal">Don vi tinh:</label>
-                                    <select class="form-control" id="meal" name="meal.idMeal">
-                                        <option th:value="${food.meal.idMeal}" th:text="${food.meal.Namemeal}"></option>
-                                      <option th:each="me : ${meal}" th:value="${me.idMeal}" th:text="${me.Namemeal}" ></option>
-                                    </select>
-                                  </div>
+                                    <div class="row mt-2">
+                                      <div class="col-md-6">
+                                      
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="name">Ten mon:</label>
+                                          <input class="form-control" type="text" th:field="*{name}" id="name"/>
+                                          <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="calo">Calo:</label>
+                                          <input class="form-control" type="text" th:field="*{calo}" id="calo" />
+                                          <span class="text-danger" th:if="${#fields.hasErrors('calo')}" th:errors="*{calo}"></span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="chatdam">Chat dam:</label>
+                                          <input class="form-control" type="text" th:field="*{chatdam}" id="chatdam"/>
+                                          <span class="text-danger" th:if="${#fields.hasErrors('chatdam')}" th:errors="*{chatdam}"></span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="chatbeo">Chat beo:</label>
+                                          <input class="form-control" type="text" th:field="*{chatbeo}" id="chatbeo"/>
+                                          <span class="text-danger" th:if="${#fields.hasErrors('chatbeo')}" th:errors="*{chatbeo}"></span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="chatxo">Chat xo:</label>
+                                          <input class="form-control" type="text" th:field="*{chatxo}" id="chatxo"/>
+                                          <span class="text-danger" th:if="${#fields.hasErrors('chatxo')}" th:errors="*{chatxo}"></span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="qlove">So tim:</label>
+                                          <input class="form-control" type="text" th:field="*{chatxo}" id="chatxo"  readonly/>
+                                          <span class="text-danger" th:if="${#fields.hasErrors('chatxo')}" th:errors="*{chatxo}"></span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="unit">Don vi tinh:</label>
+                                          <select class="form-control" id="unit" name="unit.idUnit">
+                                              <option th:value="${food.unit.idUnit}" th:text="${food.unit.Nameunit}"></option>
+                                              <option th:each="unit : ${unitfood}" th:value="${unit.idUnit}" th:text="${unit.Nameunit}" ></option>
+      
+                                          </select>
+      
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="typefood">Don vi tinh:</label>
+                                          <select class="form-control" id="typefood" name="typefood.idTypefood">
+                                              <option th:value="${food.typefood.idTypefood}" th:text="${food.typefood.Name}"></option>
+                                            <option th:each="type : ${typefood}" th:value="${type.idTypefood}" th:text="${type.Name}" ></option>
+                                          </select>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                          <label class="form-label" for="meal">Don vi tinh:</label>
+                                          <select class="form-control" id="meal" name="meal.idMeal">
+                                              <option th:value="${food.meal.idMeal}" th:text="${food.meal.Namemeal}"></option>
+                                            <option th:each="me : ${meal}" th:value="${me.idMeal}" th:text="${me.Namemeal}" ></option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <input type="file" name="imageFile" accept="image/jpeg, image/png">
+  
+                                      </div>
+                                      
+                                    </div>
+                                   
                                   <input type="submit" class="btn btn-primary" value="Save" />
                                 </form>
                                 <br />
