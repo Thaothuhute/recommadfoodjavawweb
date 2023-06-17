@@ -163,8 +163,23 @@ public class FoodController {
         return "redirect:/foods";
     }
 
-    @GetMapping("detail")
-    public String detailfood(Model model){
+    @GetMapping("detail/{id}")
+    public String detailfood(@PathVariable("id") Long id, Model model){
+        Food food = foodService.getbyIdFood(id);
+        model.addAttribute("food", food);
+         String filename = "" + id + ".jpg";
+
+        Path imageFood = Path.of(
+                "D:\\tesst\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\img\\imgFood",
+                filename);
+
+        if (Files.exists(imageFood)) {
+            model.addAttribute("imageFoodurl",
+                    "../../assets/img/imgFood/" + filename);
+        } else {
+            model.addAttribute("imageFoodurl",
+                    "../../assets/img/imgFood/nothing.jpg");
+        }
         return "Food/detail";
     }
 }

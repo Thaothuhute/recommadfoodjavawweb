@@ -27,9 +27,12 @@ lang="en">
     <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
   
     <!-- Template Main CSS File -->
     <link href="/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/detail.css" /> 
+
   
     <!-- =======================================================
     * Template Name: Yummy
@@ -59,8 +62,8 @@ lang="en">
         <li><a href="/about">About</a></li>
         <li><a href="/menu">Menu</a></li>
         <li><a href="/event">Events</a></li>
-        <li><a href="/chefs">Chefs</a></li>
-        <li><a href="/gallery">Gallery</a></li>
+        <!-- <li><a href="/chefs">Chefs</a></li> -->
+        <!-- <li><a href="/gallery">Gallery</a></li> -->
         <li><a href="/user">User</a></li>
         <li sec:authorize="isAuthenticated()">
           <form th:action="@{/logout}" method="post">
@@ -70,7 +73,7 @@ lang="en">
         <li sec:authorize="!isAuthenticated()">
           <a class="btn btn-outline-primary" href="/login">Login</a>
         </li>
-        <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>
             <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -86,7 +89,7 @@ lang="en">
             <li><a href="#">Drop Down 3</a></li>
             <li><a href="#">Drop Down 4</a></li>
           </ul>
-        </li>
+        </li> -->
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav><!-- .navbar -->

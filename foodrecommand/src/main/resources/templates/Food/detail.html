@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.Thymeleaf.org" lang="en">
 
 <head>
-    <!-- <link rel="stylesheet" href="assets/css/detail.css" asp-append-version="true" /> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <!-- <script src="./js/Detail.js"></script> -->
-    <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
+    <link rel="stylesheet" href="/css/detail.css" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+     <!-- <script src="/js/Detail.js"></script>  -->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> 
     <th:block th:replace="layout :: layout-css"></th:block>
 
 
@@ -62,10 +62,10 @@
             <div class="row">
                 <div class="col-5">
                     <ul>
-                        <li>Calo:</li>
-                        <li>Chất béo: @beo</li>
-                        <li>Chất xơ: @xo</li>
-                        <li>chất đạm: @dam</li>
+                        <li>Calo: <a th:text = "${food.calo}" ></a></li>
+                        <li>Chất béo:<a th:text = "${food.chatbeo}" ></a></li>
+                        <li>Chất xơ: <a th:text = "${food.chatxo}" ></a></li>
+                        <li>chất đạm: <a th:text = "${food.chatdam}" ></a></li>
                     </ul>
                 </div>
                 <div class="col-4">
@@ -104,8 +104,8 @@
 
         </div>
         <div class="foodname">
-            <p class="effect-underline">
-                banh gio
+            <p class="effect-underline" th:text ="${food.name}">
+                
             </p>
 
         </div>
