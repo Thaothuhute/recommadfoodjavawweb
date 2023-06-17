@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.foodrecommand.Model.Food;
@@ -36,6 +37,12 @@ public class HomeCotroller{
      @GetMapping("/event")
     public String event(){
         return "Home/event";        
+    }
+    @GetMapping("/detailfood/{id}")
+    public String Editfood (@PathVariable("id") Long id, Model model){
+        Food food = foodService.getbyIdFood(id);
+        model.addAttribute("food", food);
+        return "home/detailFood";
     }
    
    

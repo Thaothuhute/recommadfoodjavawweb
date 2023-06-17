@@ -59,7 +59,7 @@
                             <div class="card-body">
                               <div class="container">
                                 <h1> Them mon an</h1>
-                                <form th:action="@{/foods/edit/{id}(id=${food.Idfood})}" th:object="${food}" method="post">
+                                <form th:action="@{/foods/edit/{id}(id=${food.Idfood})}" th:object="${food}" method="post" enctype="multipart/form-data">
                                 
                                     <input type="hidden" th:field="*{Idfood}"th:value="*{Idfood}" />
                                     <div class="row mt-2">
@@ -120,8 +120,12 @@
                                         </div>
                                       </div>
                                       <div class="col-md-6">
-                                        <input type="file" name="imageFile" accept="image/jpeg, image/png">
-  
+                                        <div class="col-mb-3">
+                                          <input type="file" name="file" accept="image/jpeg, image/png">
+                                        </div>
+                                        <div class="col-mb-3">
+                                        <img th:src="${imageFoodurl}" alt="Uploaded Image" th:height="200" th:width="300" />
+                                        </div>
                                       </div>
                                       
                                     </div>

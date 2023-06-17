@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.Thymeleaf.org" lang="en">
+
+<head>
+    <!-- <link rel="stylesheet" href="assets/css/detail.css" asp-append-version="true" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <script src="./js/Detail.js"></script> -->
+    <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
+    <th:block th:replace="layout :: layout-css"></th:block>
+
+
+</head>
+
+<body class="container">
+    <th:block th:replace="layout :: layout-header"></th:block>
+    <main>
+         <div class="space">
+
+        </div>
+
+        <div class="recipe-card2">
+            <div class="recipeFood">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="material">
+                            <div>
+                                <h1>
+                                    Nguyên liệu
+                                </h1>
+
+                                <div class="ContenMat">
+                                    <ul>
+                                        dfdfdf
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="material">
+                            <div>
+                                <h1>
+                                    Cách làm
+                                </h1>
+
+                                <div class="ContenRe">
+                                   cacsh dff
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="nutricard-card">
+
+            <div class="spaces"></div>
+
+            <div class="row">
+                <div class="col-5">
+                    <ul>
+                        <li>Calo:</li>
+                        <li>Chất béo: @beo</li>
+                        <li>Chất xơ: @xo</li>
+                        <li>chất đạm: @dam</li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <ul>
+                       
+                        <li>dinh duong </li>
+                       
+                    </ul>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="content-card">
+            <div class="content">
+
+
+                
+                <p>@text</p>
+              
+
+            </div>
+
+        </div>
+        <div class="recipe-card">
+            <div class="card-Foodimg">
+                <img src="../../assets/img/imgFood/1.jpg" />
+
+            </div>
+
+        </div>
+        <div class="foodname">
+            <p class="effect-underline">
+                banh gio
+            </p>
+
+        </div>
+        <div class="btn-youtube">
+           
+           
+            <a href="https://shopeefood.vn/ho-chi-minh/danh-sach-dia-diem-giao-tan-noi?q=banh gio"><span>Youtube</span></a>
+        </div>
+        <div class="btn-shoppe">
+            <a href="https://www.google.com/search?q=cong+thuc+lam+"><span>ShoopeeFood</span></a>
+        </div>
+        <div class="btn-order">
+            <a href="#"><span>Order</span></a>
+        </div>
+        <div class="buttonReact">
+            <ul class="option-blog">
+                <li><a href="#"><i class="far fa-heart"></i></a></li>
+                <li><a href="#"><i class="fas fa-eye"></i></a></li>
+
+            </ul>
+        </div>
+
+
+        <!-- <div class="cmtRegion">
+            <div class="cardCmtuser">
+                <img src=@imgLink alt="Avatar" class="avatar" />
+                <form action="/Home/SendCmttodata" method="post">
+                    <textarea class="cmntText" name="cmtData">
+
+            </textarea>
+                    <input type="hidden" name="idFood" value=@Model.Id />
+                    <ul class="option-blog">
+                        <li><button type="submit"><i class="fa fa-paper-plane" style="font-size:36px"></i></button></li>
+
+
+                    </ul>
+                </form>
+            </div>
+            @foreach (CommentUser item in commentUserslist)
+            {
+            <div class="cardCmt">
+                <div class="username">
+                    <p>@item.idUser</p>
+                </div>
+                <img src=@imgLink alt="Avatar" class="avatar" />
+
+                <textarea class="cmntText" readonly="true">
+
+                        @item.content
+                      
+                    </textarea>
+                <ul class="option-blog">
+                    <li><a href="#"><i class="far fa-heart"></i></a></li>
+                    <li><a href="#"><i class="fas fa-eye"></i></a></li>
+
+                </ul>
+
+            </div>
+            }
+        </div> -->
+    </main>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script> -->
+        <!-- <th:block th:replace="layout :: layout-footer"></th:block> -->
+</body>
+
+</html>
