@@ -7,6 +7,6 @@ import com.example.foodrecommand.Model.Diet;
 
 
 public interface IDietRepository extends JpaRepository<Diet,Long> {
-       @Query("DELETE  FROM Diet r WHERE r.idUser = ?1")
+       @Query("DELETE  FROM Diet r WHERE r.user.userid = ?1")
     void DeleteDietbyUserid(Long Userid);
 }

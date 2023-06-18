@@ -3,11 +3,13 @@ package com.example.foodrecommand.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.foodrecommand.Model.Diet;
 import com.example.foodrecommand.Model.Meal;
 import com.example.foodrecommand.Repository.IDietRepository;
 
+@Service
 public class DietService {
     @Autowired
     private IDietRepository dietRepository;
