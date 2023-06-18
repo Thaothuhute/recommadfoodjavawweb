@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.hibernate.mapping.Map;
 import org.springframework.aop.framework.adapter.GlobalAdvisorAdapterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,15 @@ import jakarta.validation.Valid;
 
 import com.example.foodrecommand.Logic.BMR;
 import com.example.foodrecommand.Logic.IBM;
+import com.example.foodrecommand.Model.Aswers;
 import com.example.foodrecommand.Model.Diet;
 import com.example.foodrecommand.Model.Food;
+import com.example.foodrecommand.Model.QuestionAnswer;
 import com.example.foodrecommand.Model.Unit;
 import com.example.foodrecommand.Model.User;
 import com.example.foodrecommand.Service.DietService;
 import com.example.foodrecommand.Service.FoodService;
+import com.example.foodrecommand.Service.QandAService;
 import com.example.foodrecommand.Service.UserService;
 import com.example.foodrecommand.Utils.SercurityConfig;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
@@ -39,7 +43,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private QandAService qandAService;
     @Autowired
     private DietService dietService;
     @Autowired
@@ -158,13 +163,29 @@ public class UserController {
         return CaloUpdate;
     }
     
-    @GetMapping
+    @GetMapping("/question")
+    public String questionandanswer(Model model){
+        HashMap<Integer,List<QuestionAnswer>> QaA = qandAService.getAllQandA();
+        HashMap<String,Integer> answers = new HashMap<>();
+        answers.put("GENDER", 0);
+        answers.put("AGE", 1);
+        answers.put("ACTIVE", 0);
+        answers.put("COLOR", 1);
+        answers.put("KETTASTE", 1);
+        answers.put("KEYEMOTION", 1);
+        answers.put("AIM", 0);
+        Aswers aswers = new Aswers(answers);
+        model.addAttribute("QaA", QaA);
+        model.addAttribute("answers", aswers);
+
+        return "user/quesandans";
+    }   
 
 
     @PostMapping("/recommandFoodForWeek")
-    public String recommandFood(Model model,@ModelAttribute("foodHash") HashMap<String,Integer> foodHash){
+    public String recommandFood(Model model,@ModelAttribute("answers") Aswers answers){
 
-       HashMap<String,Integer> answer = foodHash;
+       Aswers answer = answers;
         User userCurrent = getcurrentUser();
         List<Float> CaloForOneDay = caloneedforOneday(userCurrent);
         List<HashMap<Integer,Float>> CaloContribute = updateCaloNeed( CaloForOneDay);
@@ -173,19 +194,19 @@ public class UserController {
         List<Diet> diets = new ArrayList<>();
         dietService.RemoveAllDeitofUser(userCurrent.getUserid());
 
-        if(answer.get("ACTIVE") <=1){
-            answer.put("ACTIVE",1);
+        if(answer.getAnswer().get("ACTIVE") <=1){
+            answer.getAnswer().put("ACTIVE",1);
         }
         else{
-            answer.put("ACTIVE", 2);
+            answer.getAnswer().put("ACTIVE", 2);
         }
 
-
+        
        
 
 
 
-        return "user/menu";
+        return "redirect:/user";
     }
 
     

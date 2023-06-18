@@ -26,8 +26,9 @@ public class Diet {
 
     public int iddiet;
 
-    @Column(name = "meal")
-    public int meal;
+    @ManyToOne
+    @JoinColumn(name  = "idMeal", referencedColumnName = "idMeal")
+    private Meal meal;
 
     @Column(name ="day")
     public Date day;

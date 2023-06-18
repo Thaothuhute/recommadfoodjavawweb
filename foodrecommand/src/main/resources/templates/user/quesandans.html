@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.Thymeleaf.org" lang="en">
+
+<head>
+    <th:block th:replace="layout :: layout-css"></th:block>
+</head>
+
+<body>
+    <th:block th:replace="layout :: layout-header"></th:block>
+    <main>
+        <form th:action="@{/recommandFoodForWeek}" th:object="${answers}" method="post">
+            <div class="container-fluid px-4">
+
+                <div class="container-fluid px-4">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <div class="optionbox">
+                                <label for="answers"> select:option</label>
+                                <select id="answer" class="form-control" name="answer" value="answer['GENDER']" th:field ="*{answer[GENDER]}" >
+                                    <option th:each="gender : ${QaA[0]}" th:value="${gender.value}"
+                                        th:text="${gender.answer}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 menu-item">
+                            <div class="optionbox">
+                                <label for="answers"> select:option</label>
+                                <select id="answer" class="form-control" name="answer" value="answer['AGE']" th:field ="*{answer[AGE]}" >
+                                    <option th:each="gender : ${QaA[1]}" th:value="${gender.value}"
+                                        th:text="${gender.answer}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 menu-item">
+                            <div class="optionbox">
+                                <label for="answers"> select:option</label>
+                                <select id="answer" class="form-control" name="answer" value="answer['ACTIVE']" th:field ="*{answer[ACTIVE]}" >
+                                    <option th:each="gender : ${QaA[2]}" th:value="${gender.value}"
+                                        th:text="${gender.answer}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 menu-item">
+                            <div class="optionbox">
+                                <label for="answers"> select:option</label>
+                                <select id="answer" class="form-control" name="answer" value="answer['COLOR']" th:field ="*{answer[COLOR]}" >
+                                    <option th:each="gender : ${QaA[3]}" th:value="${gender.value}"
+                                        th:text="${gender.answer}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 menu-item">
+                            <div class="optionbox">
+                                <label for="answers"> select:option</label>
+                                <select id="answer" class="form-control" name="answer" value="answer['KEYTASTE']" th:field ="*{answer[KEYTASTE]}" >
+                                    <option th:each="gender : ${QaA[4]}" th:value="${gender.value}"
+                                        th:text="${gender.answer}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 menu-item">
+                            <div class="optionbox">
+                                <label for="answers"> select:option</label>
+                                <select id="answer" class="form-control" name="answer" value="answer['KEYEMOTION']" th:field ="*{answer[KEYEMOTION]}" >
+                                    <option th:each="gender : ${QaA[5]}" th:value="${gender.value}"
+                                        th:text="${gender.answer}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 menu-item">
+                            <div class="optionbox">
+                                <label for="answers"> select:option</label>
+                                <select id="answer" class="form-control" name="answer" value="answer['AIM']" th:field ="*{answer[AIM]}" >
+                                    <option th:each="gender : ${QaA[6]}" th:value="${gender.value}"
+                                        th:text="${gender.answer}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <input type="submit" class="btn btn-primary" value="Save">
+
+        </form>
+    </main>
+
+
+
+</body>
