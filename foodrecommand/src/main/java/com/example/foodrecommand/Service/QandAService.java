@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.foodrecommand.Model.QuestionAnswer;
 
+
 @Service
 public class QandAService {
 
@@ -32,9 +33,13 @@ public class QandAService {
         mapofanswer.put(1, questionAnswers);
 
         questionAnswers = new ArrayList<>();
-        value = new QuestionAnswer("Hoat dong binh thuong", 1);
+        value = new QuestionAnswer("Khong hoat dong manh", 0);
         questionAnswers.add(value);
-        value = new QuestionAnswer("Hoat dong nhieu", 2);
+        value = new QuestionAnswer("Co nhung khong nhieu", 1);
+          questionAnswers.add(value);
+        value = new QuestionAnswer("Tren 2 lan 1 tuan", 3);
+          questionAnswers.add(value);
+        value = new QuestionAnswer("Tren 4 lan 1 tuan",4);
         questionAnswers.add(value);
 
         mapofanswer.put(2, questionAnswers);
@@ -50,11 +55,11 @@ public class QandAService {
         questionAnswers = new ArrayList<>();
         value = new QuestionAnswer("Man", 1);
         questionAnswers.add(value);
-        value = new QuestionAnswer("Cay ", 2);
+        value = new QuestionAnswer("Ngot ", 2);
         questionAnswers.add(value);
         value = new QuestionAnswer("Chua ", 3);
         questionAnswers.add(value);
-        value = new QuestionAnswer("Ngot ", 4);
+        value = new QuestionAnswer("Cay ", 4);
         questionAnswers.add(value);
 
         mapofanswer.put(4, questionAnswers);
@@ -64,11 +69,21 @@ public class QandAService {
         questionAnswers.add(value);
         value = new QuestionAnswer("Tieu cuc ", 2);
         questionAnswers.add(value);
-        value = new QuestionAnswer("Vui ve ", 3);
+        value = new QuestionAnswer("Tich cuc ", 3);
         questionAnswers.add(value);
 
         mapofanswer.put(5, questionAnswers);
 
+
+        questionAnswers = new ArrayList<>();
+        value = new QuestionAnswer("Giu dang", 0);
+        questionAnswers.add(value);
+        value = new QuestionAnswer("Giam can", 1);
+        questionAnswers.add(value);
+          value = new QuestionAnswer("Tang can", 2);
+        questionAnswers.add(value);
+
+        mapofanswer.put(6, questionAnswers);
         return (HashMap<Integer, List<QuestionAnswer>>) mapofanswer;
     }
 }

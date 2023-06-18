@@ -67,12 +67,18 @@ public class User {
     @Column(name ="gender")
     private int gender;
 
+
     @Column(name="active")
     private int active;
+
+
+    @Column(name = "aim")
+    private int aim;
     @Fetch(FetchMode.JOIN)
     @ManyToMany()
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
 
     public User(){}
     

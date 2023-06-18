@@ -2,13 +2,11 @@ package com.example.foodrecommand.Model;
 
 import java.sql.Date;
 
-import jakarta.persistence.Column;
+import com.example.foodrecommand.Validator.annotrion.ValidTypefoodId;
+import com.example.foodrecommand.Validator.annotrion.ValidUserId;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -33,6 +31,17 @@ public class Diet {
 
     @Column(name ="day")
     public Date day;
+
+    @ManyToOne
+    @JoinColumn(name  = "idFood", referencedColumnName = "Idfood")
+    private Food food;
+    
+
+    @ManyToOne
+    @JoinColumn(name  = "idUser", referencedColumnName = "userid")
+    @ValidUserId
+    private User user;
+    
     
 
     
