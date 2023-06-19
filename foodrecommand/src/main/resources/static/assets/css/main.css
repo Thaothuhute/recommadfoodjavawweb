@@ -67,10 +67,13 @@ section {
 .section-bg {
   background-color: #eee;
 }
-
+.Space-web h1{
+  position: relative;
+  margin-top: 120px;
+}
 .optionbox{
   position: relative;
-  margin-top:100px;
+  margin-bottom: 10px;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -80,7 +83,7 @@ section {
     background: #E91E63;
     color: #fff;
     padding: 10px;
-    width: 250px;
+    width: 300px;
     height: 50px;
     border: none;
     font-size: 20px;
@@ -89,7 +92,7 @@ section {
     outline: none;
 }
 
-.optionbox:before{
+/* .optionbox:before{
   content: '\f358';
   font-family: "Font Awesome 5 free";
   position: absolute;
@@ -112,9 +115,9 @@ section {
 .optionbox:hover:before{
    
     background: #c72059;
+ */
 
-
-  }
+  
 .section-header {
   text-align: center;
   padding-bottom: 30px;

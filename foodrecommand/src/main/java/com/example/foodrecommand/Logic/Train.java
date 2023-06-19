@@ -24,15 +24,14 @@ import lombok.Setter;
 public class Train {
 
     @Autowired
-    private DataService dataService;
     public List<Datatrain> data;
     public List<String> Attribute = new ArrayList<>(List.of(
-            "Gender",
-            "Age",
-            "Activ",
-            "Color",
-            "KeyTaste",
-            "KeyEmotion"));
+            "GENDER",
+            "AGE",
+            "ACTIVE",
+            "COLOR",
+            "KEYTASTE",
+            "KEYEMOTION"));
 
     public Node rootEnd = new Node();
 
@@ -43,16 +42,16 @@ public class Train {
     public List<Map<String, Integer>> AddData() {
         List<Map<String, Integer>> Datatrain = new ArrayList<>();
         List<Datatrain> newdata = new ArrayList<>();
-        newdata = dataService.getAll().stream().filter(x -> x.getKeyemotion() == 2).toList();
+       
 
         for (Datatrain item : data) {
             Map<String, Integer> itemData = new HashMap<>();
-            itemData.put("Gender", item.getGender());
-            itemData.put("Age", item.getAge());
-            itemData.put("Activ", item.getActive());
-            itemData.put("Color", item.getColor());
-            itemData.put("KeyEmotion", item.getKeyemotion());
-            itemData.put("KeyTaste", item.getKeytaste());
+            itemData.put("GENDER", item.getGender());
+            itemData.put("AGE", item.getAge());
+            itemData.put("ACTIVE", item.getActive());
+            itemData.put("COLOR", item.getColor());
+            itemData.put("KEYEMOTION", item.getKeyemotion());
+            itemData.put("KEYTASTE", item.getKeytaste());
             itemData.put("NutributionId", (int) item.getNutribute().getIdNutribute());
             Datatrain.add(itemData);
 

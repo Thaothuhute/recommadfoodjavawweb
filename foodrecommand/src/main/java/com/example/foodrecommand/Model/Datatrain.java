@@ -26,7 +26,6 @@ import lombok.Setter;
 public class Datatrain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
     @Column(name ="age")
     private int age;

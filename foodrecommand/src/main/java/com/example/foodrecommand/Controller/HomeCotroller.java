@@ -45,5 +45,11 @@ public class HomeCotroller{
         return "home/detailFood";
     }
    
-   
+    @GetMapping("/testFood")
+    public String gettest(Model model){
+         List<Food> foods = foodService.getAllFood();
+        model.addAttribute("foods", foods);
+        model.addAttribute("tilte", "Danh sach do an");
+        return "user/foodrecomand"; 
+    }
 }

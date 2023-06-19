@@ -1,9 +1,15 @@
 package com.example.foodrecommand.Controller;
 
 import java.lang.ref.Cleaner.Cleanable;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
+
+import javax.xml.crypto.Data;
 
 import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.hibernate.mapping.Map;
@@ -24,23 +30,35 @@ import jakarta.validation.Valid;
 import com.example.foodrecommand.Logic.BMR;
 import com.example.foodrecommand.Logic.IBM;
 import com.example.foodrecommand.Model.Aswers;
+import com.example.foodrecommand.Model.Datatrain;
+import com.example.foodrecommand.Model.DetailNutriFood;
 import com.example.foodrecommand.Model.Diet;
 import com.example.foodrecommand.Model.Food;
 import com.example.foodrecommand.Model.QuestionAnswer;
 import com.example.foodrecommand.Model.Unit;
 import com.example.foodrecommand.Model.User;
+import com.example.foodrecommand.Logic.Node;
+import com.example.foodrecommand.Logic.RecommandFood;
+import com.example.foodrecommand.Service.DataService;
+import com.example.foodrecommand.Service.DetailNutriFoodService;
 import com.example.foodrecommand.Service.DietService;
 import com.example.foodrecommand.Service.FoodService;
 import com.example.foodrecommand.Service.QandAService;
+import com.example.foodrecommand.Service.UnitService;
 import com.example.foodrecommand.Service.UserService;
 import com.example.foodrecommand.Utils.SercurityConfig;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @Controller
 public class UserController {
+    @Autowired
+    private DataService dataService;
+    @Autowired
+    private UnitService unitService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -49,7 +67,8 @@ public class UserController {
     private DietService dietService;
     @Autowired
     private FoodService foodService;
-
+@Autowired
+private DetailNutriFoodService detailNutriFoodService;
     @GetMapping("/login")
     public String login(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
@@ -138,7 +157,7 @@ public class UserController {
         return "redirect:/login";
     }
 
-    public List<Float> caloneedforOneday(User user) {
+    public List<Float> ListCaloneedforOneday(User user) {
         BMR bmr = new BMR();
         Float caloriesneed = bmr.TDEE(user.getGender(), user.getHeight(), user.getWeigh(), user.getAge(), user.getAim(),
                 user.getActive());
@@ -187,11 +206,11 @@ public class UserController {
 
        Aswers answer = answers;
         User userCurrent = getcurrentUser();
-        List<Float> CaloForOneDay = caloneedforOneday(userCurrent);
+        List<Float> CaloForOneDay = ListCaloneedforOneday(userCurrent);
         List<HashMap<Integer,Float>> CaloContribute = updateCaloNeed( CaloForOneDay);
-
-
-        List<Diet> diets = new ArrayList<>();
+        userCurrent.setAim(answer.getAnswer().get("AIM"));
+        userCurrent.setActive(answer.getAnswer().get("ACTIVE"));
+        userService.addUser(userCurrent);
         dietService.RemoveAllDeitofUser(userCurrent.getUserid());
 
         if(answer.getAnswer().get("ACTIVE") <=1){
@@ -201,13 +220,91 @@ public class UserController {
             answer.getAnswer().put("ACTIVE", 2);
         }
 
+        Aswers aswersfinal = new Aswers();
+        aswersfinal.setAnswer(new HashMap<>());
+        aswersfinal.getAnswer().put("GENDER", answer.getAnswer().get("GENDER"));
+        aswersfinal.getAnswer().put("AGE", answer.getAnswer().get("AGE"));
+
+        aswersfinal.getAnswer().put("GENDER", answer.getAnswer().get("GENDER"));
+
+        aswersfinal.getAnswer().put("ACTIVE", answer.getAnswer().get("ACTIVE"));
+
+        aswersfinal.getAnswer().put("COLOR", answer.getAnswer().get("COLOR"));
+
+        aswersfinal.getAnswer().put("KEYTASTE", answer.getAnswer().get("KEYTASTE"));
+        aswersfinal.getAnswer().put("KEYEMOTION", answer.getAnswer().get("KEYEMOTION"));
         
-       
+        List<Datatrain> dbTrain = dataService.getAll();
+        
+        RecommandFood recommandFood = new RecommandFood(aswersfinal.getAnswer(),dbTrain);
+        Node nodeRecommand = recommandFood.returnTrain();
+        
+        List<Diet> diets = new ArrayList<>();
+        List<Food> foodForOneDay = new ArrayList<>();
+        List<DetailNutriFood> detailNutriFoods = new ArrayList<>();
+
+        detailNutriFoods = detailNutriFoodService.getAll();
+        long asd =8;
+        long idnutrifood =  (long) nodeRecommand.Label.get(0);
+        detailNutriFoods = detailNutriFoods.stream().filter(x->x.getNutribute().getIdNutribute() == idnutrifood).toList();
 
 
+        for(int i =0;i<7;i++){
+            foodForOneDay = new ArrayList<>();
+            List<Integer> ListRandom = new ArrayList<>();
+            for(int j=0;j<3;j++  ){
+                Random random = new Random();
+                int randomNumber = random.nextInt(detailNutriFoods.size()-1-0+1)-0;
+                // if(ListRandom.stream().filter(x->x==randomNumber).count() !=0){
+                //     j--;
+                // }
+                // else{
+                //     ListRandom.add(randomNumber);
+                    Food food= detailNutriFoods.get(randomNumber).getFood();
+                    foodForOneDay.add(food);
+                }
+            
+            for (Food item : foodForOneDay) {
+                Diet bref1 = new Diet();
+                bref1.setUser(userCurrent);
+                bref1.setFood(item);
+                LocalDate datecurrent = LocalDate.now();
+                bref1.setDay(Date.valueOf(datecurrent));
+                bref1.setMeal(item.getMeal());
+                dietService.Add(bref1);
+            }
+        }
 
-        return "redirect:/user";
+        int IsExsit = 0;
+        int dayDiet = 0;
+        //lay db diet len
+        HashMap<Integer,List<Diet>> FoodforServeralDay = new HashMap<>();
+        List<Diet> dietForOneDay =  new ArrayList<>();
+        List<Diet> dietforUser = dietService.getAll();
+        if(dietforUser.stream().filter(x->x.getUser().getUserid() == userCurrent.getUserid()).count() >=21){
+            List<Diet> dietforCurretnUser =  dietforUser.stream().filter(x->x.getUser().getUserid() == userCurrent.getUserid()).toList();
+            IsExsit = 1;    
+            dayDiet =1;
+            for(int i = dietforCurretnUser.size() - 1;i >= dietforCurretnUser.size() -21; i-=3){
+                    dietForOneDay = new ArrayList<>();
+                    dietForOneDay.add(dietforCurretnUser.get(i));
+                    dietForOneDay.add(dietforCurretnUser.get(i - 1));
+                    dietForOneDay.add(dietforCurretnUser.get(i - 2));
+                    FoodforServeralDay.put(dayDiet,dietForOneDay);
+                    dayDiet++;
+                    
+            }
+            model.addAttribute("FoodFor7day", FoodforServeralDay);
+            model.addAttribute("CaloForServerralBref",CaloForOneDay);
+
+        }
+        else{
+            IsExsit = 0;
+        }
+        model.addAttribute("Dvt", unitService.getAllUnit());
+         model.addAttribute("IsExsit", IsExsit);
+        return "user/foodrecomand";
     }
 
-    
+   
 }

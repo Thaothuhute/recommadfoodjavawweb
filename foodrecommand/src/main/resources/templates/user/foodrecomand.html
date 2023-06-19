@@ -11,8 +11,8 @@
         <div class="container" data-aos="fade-up">
   
           <div class="section-header">
-            <h2>Our Menu</h2>
-            <p>Check Our <span>Yummy Menu</span></p>
+            <h2>KET QUA PHAN TICH</h2>
+            <p>MON AN <span>CUA BAN</span></p>
           </div>
   
           <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
@@ -130,20 +130,20 @@
                 <h3>Breakfast</h3>
               </div>
   
-              <div class="row gy-5" th:each="Food : ${foods}" th:if="${Food.meal.idMeal == 1}">
+              <div class="row gy-5" th:each="diet : ${FoodFor7day[2]}" >
               
                 <div class="col-lg-4 menu-item">
                     <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
                     <h4>
-                        <span th:text="${Food.name}">
+                        <span th:text="${diet.food.name}">
 
                         </span>
                     </h4>
                     <p class="ingredients">
-                      <span th:text="${Food.calo}"></span> Calo
+                      <span th:text="${diet.food.calo}"></span> Calo
                     </p>
                     <p class="price">
-                      <span th:text="${Food.meal.Namemeal}"></span>
+                      <span>asd</span>
                     </p>
                 </div>
   
