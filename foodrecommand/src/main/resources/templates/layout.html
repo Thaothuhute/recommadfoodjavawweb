@@ -8,7 +8,7 @@ lang="en">
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
   
-    <title>[Template] Sample Inner Page</title>
+    <title>Recommand</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
   
@@ -31,7 +31,7 @@ lang="en">
   
     <!-- Template Main CSS File -->
     <link href="/assets/css/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/detail.css" /> 
+    
 
   
     <!-- =======================================================
@@ -65,9 +65,11 @@ lang="en">
         <!-- <li><a href="/chefs">Chefs</a></li> -->
         <!-- <li><a href="/gallery">Gallery</a></li> -->
         <li><a href="/user">User</a></li>
+        <li><a href="/foodrecommand">FoodRe</a></li>
+      
         <li sec:authorize="isAuthenticated()">
           <form th:action="@{/logout}" method="post">
-            <a class="btn btn-outline-danger" type="submit">Logout</a>
+            <button a class="btn btn-outline-danger" type="submit">Logout</button>
           </form>
         </li>
         <li sec:authorize="!isAuthenticated()">
@@ -91,10 +93,11 @@ lang="en">
           </ul>
         </li> -->
         <li><a href="#contact">Contact</a></li>
+        <li><a href="/foods">Admin</a></li>
       </ul>
     </nav><!-- .navbar -->
 
-    <a class="btn-book-a-table" href="#book-a-table">Book a Table</a>
+    <a class="btn-book-a-table" href="/question">Recommand</a>
     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 

@@ -52,6 +52,8 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UserController {
@@ -98,8 +100,9 @@ private DetailNutriFoodService detailNutriFoodService;
     public String userpo(Model model) {
         User usercurrent = getcurrentUser();
         BMR bmr = new BMR();
-        Float cbmr = bmr.calosuiwAim(usercurrent.getGender(), usercurrent.getHeight(), usercurrent.getWeigh(),
-                usercurrent.getAge(), usercurrent.getActive());
+        Float cbmr = bmr.TDEE(usercurrent.getGender(), usercurrent.getHeight(), usercurrent.getWeigh(),
+                usercurrent.getAge(),usercurrent.getAim(), usercurrent.getActive());
+            
         IBM ibm = new IBM(usercurrent.getWeigh(), usercurrent.getHeight());
 
         model.addAttribute("user", usercurrent);
@@ -199,7 +202,55 @@ private DetailNutriFoodService detailNutriFoodService;
 
         return "user/quesandans";
     }   
+    @GetMapping("/foodrecommand")
+    public String foodrecommanded(Model model) {
+          User userCurrent = getcurrentUser();
+        List<Float> CaloForOneDay = ListCaloneedforOneday(userCurrent);
+        List<HashMap<Integer,Float>> CaloContribute = updateCaloNeed( CaloForOneDay);
+        int IsExsit = 0;
+        int dayDiet = 0;
+        //lay db diet len
+        HashMap<Integer,List<Diet>> FoodforServeralDay = new HashMap<>();
+        List<Diet> dietForOneDay =  new ArrayList<>();
+        List<Diet> dietforUser = dietService.getAll();
+        if(dietforUser.stream().filter(x->x.getUser().getUserid() == userCurrent.getUserid()).count() >=21){
+            List<Diet> dietforCurretnUser =  dietforUser.stream().filter(x->x.getUser().getUserid() == userCurrent.getUserid()).toList();
+            IsExsit = 1;    
+            dayDiet =1;
+            for(int i = dietforCurretnUser.size() - 1;i >= dietforCurretnUser.size() -21; i-=3){
+                    dietForOneDay = new ArrayList<>();
+                    dietForOneDay.add(dietforCurretnUser.get(i));
+                    dietForOneDay.add(dietforCurretnUser.get(i - 1));
+                    dietForOneDay.add(dietforCurretnUser.get(i - 2));
+                    FoodforServeralDay.put(dayDiet,dietForOneDay);
+                    dayDiet++;
+                    
+            }
+            model.addAttribute("FoodFor7day", FoodforServeralDay);
+            model.addAttribute("CaloForServerralBref",CaloForOneDay);
 
+        }
+        else{
+            HashMap<Integer,List<QuestionAnswer>> QaA = qandAService.getAllQandA();
+            HashMap<String,Integer> answers = new HashMap<>();
+            answers.put("GENDER", 0);
+            answers.put("AGE", 1);
+            answers.put("ACTIVE", 0);
+            answers.put("COLOR", 1);
+            answers.put("KETTASTE", 1);
+            answers.put("KEYEMOTION", 1);
+            answers.put("AIM", 0);
+            Aswers aswers = new Aswers(answers);
+            model.addAttribute("QaA", QaA);
+            model.addAttribute("answers", aswers);
+
+            return "user/quesandans";
+        }
+        model.addAttribute("Dvt", unitService.getAllUnit());
+         model.addAttribute("IsExsit", IsExsit);
+        return "user/foodrecomand";
+    }
+    
 
     @PostMapping("/recommandFoodForWeek")
     public String recommandFood(Model model,@ModelAttribute("answers") Aswers answers){

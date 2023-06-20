@@ -51,17 +51,48 @@
                                
                             </div>
                             <div class="col-md-12">
-                                <label class="labels" for="active">Tan suat hoat dong</label>
-                                <input type="text" class="form-control" id="active" th:field ="*{active}" value="active" readonly>
+                                <label class="labels" for="aim">Muc tieu</label>
+                                <div th:if="${user.aim == 0}">
+                                    <input type="text" class="form-control"  value="Giu dang" readonly>
+                                </div>
+                                <div th:if="${user.aim == 1}">
+                                    <input type="text" class="form-control"  value="Giam can" readonly>
+
+                                </div>  
+                                <div th:if="${user.aim == 2}">
+                                    <input type="text" class="form-control"  value="Tang can" readonly>
+
+                                </div>  
+                              
+                            </div>
+
+                           <div class="col-md-12">
+                                <label class="labels" for="active">Cuong do hoat dong</label>
+                                <div th:if="${user.active == 1}">
+                                    <input type="text" class="form-control"  value="Hau nhu khong" readonly>
+                                </div>
+                                <div th:if="${user.active == 2}">
+                                    <input type="text" class="form-control"  value="2 tren 1 tuan" readonly>
+
+                                </div>  
+                                <div th:if="${user.active == 3}">
+                                    <input type="text" class="form-control"  value="3-4 tren tuan" readonly>
+
+                                </div>  
+                                <div th:if="${user.active == 4}">
+                                    <input type="text" class="form-control"  value=">4 tren tuan" readonly>
+
+                                </div>  
+                               
                             </div>
                             </div>
-                        <div class="row mt-3">
+                        <!-- <div class="row mt-3">
                             <div class="col-md-6">
                                 <label class="labels">Chir</label>
                                 <input type="text" class="form-control" placeholder="country" value="">
                             </div>
                             <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                        </div>
+                        </div> -->
                         <div class="mt-5 text-center">
                             <a class="btn btn-primary profile-button" th:href="@{/user/edit/{id}(id=${user.userid})}" type="submit">Chinh sua</a>
                         </div>

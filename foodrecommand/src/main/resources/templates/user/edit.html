@@ -10,6 +10,8 @@
 
 </head>
 <body>
+    <th:block th:replace="layout :: layout-header"></th:block>
+    
     <main>
         <form th:action="@{/user/edit/{id}(id=${user.userid})}" th:object="${user}" method="post">
             <input type="hidden" th:field="*{userid}"th:value="*{userid}" />
@@ -52,9 +54,25 @@
                             </div>
                             <div class="col-md-12">
                                 <label class="labels" for="active">Cuong do hoat dong</label>
-                                <input type="text" class="form-control" id="active" th:field ="*{active}" value="active">
+                                <select type="text" class="form-control" id="active" th:field ="*{active}" value="active">
+                                    <option value="1">Hau nhu khong</option>
+                                    <option value="2">2 tren 1 tuan</option>
+                                    <option value="3">3-4 tren tuan</option>
+                                    <option value="4">>4 tren tuafn</option>
+
+                                </select>
                             </div>
+                            <div class="col-md-12">
+                                <label class="labels" for="aim">Muc tieu</label>
+                                <select type="text" class="form-control" id="active" th:field ="*{aim}" value="aim">
+                                    <option value="1">Giam can</option>
+                                    <option value="0">Giu dang</option>
+                                    <option value="2">Tang can</option>
+                                 
+
+                                </select>
                             </div>
+                        </div>
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label class="labels">Chir</label>
@@ -93,5 +111,5 @@
         
 
     </main>
-    <th:block th:replace="layout :: layout-footer"></th:block>
+    <!-- <th:block th:replace="layout :: layout-footer"></th:block> -->
 </body>

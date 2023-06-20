@@ -41,9 +41,9 @@ public class SercurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers( "/css/**", "/js/**", "/", "/register", "/error")
                             .permitAll()
-                        .requestMatchers( "/admin/**,/units/**,/foods/**")
+                        .requestMatchers( "/admin,/**,/user,/menu,/units,/foods")
                             .hasAnyAuthority("ADMIN")
-                        .requestMatchers( "/menu")
+                        .requestMatchers( "/home,/menu,/user/**")
                             .hasAnyAuthority("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )

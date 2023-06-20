@@ -1,6 +1,7 @@
 package com.example.foodrecommand.Controller;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import com.example.foodrecommand.Model.Food;
 import com.example.foodrecommand.Repository.ITypefoodRepository;
@@ -113,7 +115,8 @@ public class FoodController {
 
     @PostMapping("/edit/{id}")
     public String editBook(@PathVariable("id") Long id, @Valid @ModelAttribute("food") Food food,
-            BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
+            BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file,@RequestParam("filerecipe") MultipartFile filerecipe,
+             @RequestParam("filein") MultipartFile filein) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("unitfood", unitService.getAllUnit());
             model.addAttribute("meal", mealService.getAll());
@@ -127,7 +130,7 @@ public class FoodController {
         Path imageFood = Path.of(
                 "D:\\tesst\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\img\\imgFood",
                 filename);
-
+        
         if (Files.exists(imageFood)) {
             model.addAttribute("imageFoodurl",
                     "../../assets/img/imgFood/" + filename);
@@ -143,9 +146,44 @@ public class FoodController {
 
             // Copy file to the target location
             Path targetLocation = Path.of(
-                    "D:\\tesst\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\img\\imgFood",
+                    "D:\\vscodeproject'\\RecommandFoodnew\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\img\\imgFood",
                     fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            // Redirect to a success page
+
+        } catch (IOException e) {
+            // Handle file save failure
+            return "redirect:/foods";
+        }
+          try {
+            // Normalize file name
+            String originalFileName = StringUtils.cleanPath(filerecipe.getOriginalFilename());
+            String fileName = "" + id + ".txt";
+
+            // Copy file to the target location
+            Path targetLocation = Path.of(
+                    "D:\\vscodeproject'\\RecommandFoodnew\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\RecipeFood",
+                    fileName);
+            Files.copy(filerecipe.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            // Redirect to a success page
+
+        } catch (IOException e) {
+            // Handle file save failure
+            return "redirect:/foods";
+        }
+
+         try {
+            // Normalize file name
+            String originalFileName = StringUtils.cleanPath(filein.getOriginalFilename());
+            String fileName = "" + id + ".txt";
+
+            // Copy file to the target location
+            Path targetLocation = Path.of(
+                    "D:\\vscodeproject'\\RecommandFoodnew\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\InFood",
+                    fileName);
+            Files.copy(filein.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             // Redirect to a success page
 
@@ -168,10 +206,17 @@ public class FoodController {
         Food food = foodService.getbyIdFood(id);
         model.addAttribute("food", food);
          String filename = "" + id + ".jpg";
-
+        String filenametxt = "" + id + ".txt";
         Path imageFood = Path.of(
-                "D:\\tesst\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\img\\imgFood",
+                "D:\\vscodeproject'\\RecommandFoodnew\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\img\\imgFood\\",
                 filename);
+
+                 Path recipeFood = Path.of(
+                "D:\\vscodeproject'\\RecommandFoodnew\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\RecipeFood\\",
+                filenametxt);
+             Path inFood = Path.of(
+                "D:\\vscodeproject'\\RecommandFoodnew\\recommadfoodjavawweb\\foodrecommand\\src\\main\\resources\\static\\assets\\InFood\\",
+                filenametxt);
 
         if (Files.exists(imageFood)) {
             model.addAttribute("imageFoodurl",
@@ -179,6 +224,30 @@ public class FoodController {
         } else {
             model.addAttribute("imageFoodurl",
                     "../../assets/img/imgFood/nothing.jpg");
+        }
+
+         if (Files.exists(recipeFood)) {
+             try {
+                 String filerecipe = new String(Files.readAllBytes(recipeFood), StandardCharsets.UTF_8);
+                 model.addAttribute("recipe", filerecipe);
+             } catch (IOException e) {
+                 e.printStackTrace();
+                 // Handle the exception as needed
+             }
+        } else {
+              model.addAttribute("recipe","Chua co");
+        }
+
+          if (Files.exists(inFood)) {
+            try{
+            String filein = new String(Files.readAllBytes(inFood), StandardCharsets.UTF_8);
+            model.addAttribute("infood",filein);
+            } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception as needed
+        }
+        } else {
+              model.addAttribute("infood","Chua co");
         }
         return "Food/detail";
     }

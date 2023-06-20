@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.Thymeleaf.org" lang="en">
 
 <head>
-    <link rel="stylesheet" href="/css/detail.css" /> 
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
      <!-- <script src="/js/Detail.js"></script>  -->
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> 
     <th:block th:replace="layout :: layout-css"></th:block>
-
+    <link rel="stylesheet" href="/css/detail.css" /> 
 
 </head>
 
-<body class="container">
+<body class="sb-nav-fixed">
     <th:block th:replace="layout :: layout-header"></th:block>
-    <main>
+        <body class="container">
          <div class="space">
 
         </div>
@@ -29,9 +29,7 @@
                                 </h1>
 
                                 <div class="ContenMat">
-                                    <ul>
-                                        dfdfdf
-                                    </ul>
+                                    <pre th:text="${infood}"></pre>
                                 </div>
                             </div>
                         </div>
@@ -43,8 +41,8 @@
                                     Cách làm
                                 </h1>
 
-                                <div class="ContenRe">
-                                   cacsh dff
+                                <div class="ContenMat">
+                                    <pre th:text="${recipe}"></pre>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +96,7 @@
         </div>
         <div class="recipe-card">
             <div class="card-Foodimg">
-                <img src="../../assets/img/imgFood/1.jpg" />
+                <img th:src="${imageFoodurl}" />
 
             </div>
 
@@ -127,7 +125,7 @@
 
             </ul>
         </div>
-
+    </body>
 
         <!-- <div class="cmtRegion">
             <div class="cardCmtuser">
@@ -166,11 +164,10 @@
             </div>
             }
         </div> -->
-    </main>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script> -->
-        <!-- <th:block th:replace="layout :: layout-footer"></th:block> -->
-</body>
-
+        <script src="js/scripts.js"></script>
+       
+    </body>
 </html>
